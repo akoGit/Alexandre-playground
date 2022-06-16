@@ -1,11 +1,8 @@
 import vitePluginString from 'vite-plugin-string'
 import { defineConfig } from 'vite'
-export default {
+export default defineConfig({
   plugins: [
     vitePluginString()
-  ]
-}
-
-export default defineConfig({
-  base: '/Alexandre-playground'
+  ],
+  base: '/Alexandre-playground/'
 })
