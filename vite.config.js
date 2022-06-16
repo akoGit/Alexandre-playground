@@ -7,5 +7,5 @@ export default {
 }
 
 export default defineConfig({
-  base: '/akoGit.github.io'
+  base: '/Alexandre-playground'
 })
