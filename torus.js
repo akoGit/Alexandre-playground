@@ -75,6 +75,31 @@ export default class Sketch {
       x: -5,
       ease: "power3.out",
     })
+
+    const main_sec = document.querySelector('.main_section')
+
+    main_sec.addEventListener('mousedown', () => {
+      const tl = gsap.timeline();
+      tl.to(this.scene.scale, {
+        duration: 0.6,
+        x:1.1,
+        y:1.1,
+        z:1.1,
+        ease: "elastic.out(1.2,0.5)"
+      })
+    })
+
+   main_sec.addEventListener('mouseup', () => {
+      const tl = gsap.timeline();
+      tl.to(this.scene.scale, {
+        duration: 0.6,
+        x:1,
+        y:1,
+        z:1,
+        ease: "elastic.out(1.2,0.5)"
+      })
+    })
+
   }
  
   render() {

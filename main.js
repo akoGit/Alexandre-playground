@@ -66,10 +66,7 @@ function openMenu() {
   }, 1000);
 }
 
-
-const svg = document.querySelector(".svg");
 const clickTarget = document.getElementById("click-target");
-
 
 let toggle = false;
 
@@ -140,6 +137,7 @@ const findMystate = () => {
   const error = () => {
     statusTwo.textContent = `tbilisi`;
     status.textContent = `georgia`;
+    time.innerHTML = formatAMPM(new Date());
   };
 
   navigator.geolocation.getCurrentPosition(succes, error);
