@@ -104,10 +104,10 @@ export default class Sketch {
  
   render() {
    
-     this.camera.lookAt(this.scene.position);
-     this.scene.rotation.x += (this.scene.destination.x - this.scene.rotation.x)*0.05;
-     this.scene.rotation.y += (this.scene.destination.y - this.scene.rotation.y)*0.05;
-
+    this.camera.lookAt(this.scene.position);
+    this.scene.rotation.x += (this.scene.destination.x - this.scene.rotation.x)*0.05;
+    this.scene.rotation.y += (this.scene.destination.y - this.scene.rotation.y)*0.05;
+    
     this.material.uniforms.time.value = this.clock.getElapsedTime()
 
     requestAnimationFrame(this.render.bind(this))
