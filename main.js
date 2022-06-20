@@ -56,7 +56,6 @@ button.onclick = () => {
 
 function openMenu() {
   menu.classList.toggle("active");
-
   setTimeout(() => {
     navLinks.forEach((link, idx) => {
       setTimeout(() => {
