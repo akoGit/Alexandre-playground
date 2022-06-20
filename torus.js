@@ -75,7 +75,6 @@ export default class Sketch {
       x: -5,
       ease: "power3.out",
     })
-
     const main_sec = document.querySelector('.main_section')
 
     main_sec.addEventListener('mousedown', () => {
