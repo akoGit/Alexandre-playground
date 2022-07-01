@@ -36,7 +36,7 @@ export default class Sketch {
   }
 
   mouseMove() {
-    this.container.addEventListener('pointermove', (e) => {
+   window.addEventListener('pointermove', (e) => {
       let x = (e.clientX-this.w/2)/(this.w/2);
       let y = (e.clientY-this.h/2)/(this.h/2);
       this.scene.destination.x = y*0.30;
