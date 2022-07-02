@@ -122,7 +122,7 @@ export default class Sketch {
     this.camera.aspect = this.width / this.height
     this.camera.updateProjectionMatrix()
   }
-
+// changes
   setUpResize() {
     window.addEventListener('resize', this.resize.bind(this))
   }
