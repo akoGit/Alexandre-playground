@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import fragmentShader from './shaders/fragment.glsl';
 import vertexShader from './shaders/vertex.glsl'
-import img from '/_imgs/hirem.png';
+import img from '/images/hirem.png';
 
 export default class Sketch {
   constructor(options) {
