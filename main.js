@@ -1,4 +1,4 @@
-import Sketch from "./torus";
+import Sketch from "/torus";
 
 const body = document.body;
 const main = document.getElementById("main");
