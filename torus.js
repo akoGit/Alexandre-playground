@@ -34,7 +34,7 @@ export default class Sketch {
     this.mouseMove()
     this.animate()
   }
-  // change this
+ 
   mouseMove() {
    window.addEventListener('pointermove', (e) => {
       let x = (e.clientX-this.w/2)/(this.w/2);
