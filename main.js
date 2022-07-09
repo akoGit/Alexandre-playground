@@ -1,3 +1,5 @@
+import Sketch from "./torus";
+
 const body = document.body;
 const main = document.getElementById("main");
 
@@ -145,13 +147,16 @@ const findMystate = () => {
 let back = document.querySelector(".pre_wrap");
 let num = document.querySelector("#count");
 
+const SketchAnimation = new Sketch({
+  domElement: document.getElementById('container')
+})
 setTimeout(() => {
   back.style.opacity = "0";
   back.style.zIndex = "-999999999999";
   num.style.opacity = "0";
   animation()
   findMystate()
-  
+  SketchAnimation.animate()
 }, 1000);
 
 

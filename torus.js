@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import fragmentShader from './shaders/fragment.glsl';
 import vertexShader from './shaders/vertex.glsl'
-import img from './hirem.png';
+import img from '/_imgs/hirem.png';
 
 export default class Sketch {
   constructor(options) {
@@ -22,9 +22,8 @@ export default class Sketch {
       antialias: true,
       alpha: true
       })
-    this.renderer.setPixelRatio(window.devicePixelRatio)
+    this.renderer.setPixelRatio(window.devicePixelRatio*2)
     this.container.appendChild(this.renderer.domElement)
-    this.group = new THREE.Group()
     this.w = window.innerWidth;
     this.h = window.innerHeight;
     this.resize()
@@ -32,7 +31,6 @@ export default class Sketch {
     this.render()
     this.setUpResize()
     this.mouseMove()
-    this.animate()
   }
  
   mouseMove() {
@@ -63,28 +61,34 @@ export default class Sketch {
 
   this.geometry = new THREE.TorusGeometry(4, 2, 30, 200);
   this.mesh = new THREE.Mesh(this.geometry, this.material)
-  this.group.add(this.mesh)
-  this.scene.add(this.group)
-  
+  this.scene.add(this.mesh)
   }
 
    animate() {
     const tl = gsap.timeline();
-    tl.from(this.group.rotation, {
-      duration: 3,
-      y: -5,
-      x: -5,
-      ease: "power3.out",
-    })
+    tl.from(this.mesh.rotation, {
+      duration: 1,
+      y: -2,
+      x: -2,
+      z: 1,
+      ease: "power4.easeOut",
+    }).from(this.mesh.scale, {
+      duration: 1,
+      x: 0.8,
+      y: 0.8,
+      z: 0.8,
+      ease: "power4.easeOut",
+    }, "<")
+
     const main_sec = document.querySelector('.main_section')
 
     main_sec.addEventListener('mousedown', () => {
       const tl = gsap.timeline();
       tl.to(this.scene.scale, {
         duration: 0.6,
-        x:1.1,
-        y:1.1,
-        z:1.1,
+        x:1.06,
+        y:1.06,
+        z:1.06,
         ease: "elastic.out(1.2,0.5)"
       })
     })
@@ -103,8 +107,6 @@ export default class Sketch {
   }
  
   render() {
-   
-    this.camera.lookAt(this.scene.position);
     this.scene.rotation.x += (this.scene.destination.x - this.scene.rotation.x)*0.05;
     this.scene.rotation.y += (this.scene.destination.y - this.scene.rotation.y)*0.05;
     
@@ -122,12 +124,9 @@ export default class Sketch {
     this.camera.aspect = this.width / this.height
     this.camera.updateProjectionMatrix()
   }
-// changes
+
   setUpResize() {
     window.addEventListener('resize', this.resize.bind(this))
   }
 }
 
-new Sketch({
-  domElement: document.getElementById('container'),
-})
