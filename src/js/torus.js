@@ -1,24 +1,35 @@
-import * as THREE from 'three'
-import fragmentShader from './shaders/fragment.glsl';
-import vertexShader from './shaders/vertex.glsl'
+import {
+    Scene,
+    PerspectiveCamera,
+    Clock,
+    WebGLRenderer,
+    TextureLoader,
+    ShaderMaterial,
+    NearestFilter,
+    FrontSide,
+    TorusGeometry,
+    Mesh
+} from 'three'
+import fragmentShader from '../shaders/fragment.glsl';
+import vertexShader from '../shaders/vertex.glsl'
 import img from '/images/hirem.png';
 
 export default class Sketch {
   constructor(options) {
-    this.clock = new THREE.Clock()  
+    this.clock = new Clock()  
     this.container = options.domElement
     this.height = this.container.offsetHeight
     this.width = this.container.offsetWidth
-    this.camera = new THREE.PerspectiveCamera(
+    this.camera = new PerspectiveCamera(
         75,
         this.width / this.height,
         0.1,
         1000,
     )
     this.camera.position.set(0,0,15)
-    this.scene = new THREE.Scene()
+    this.scene = new Scene()
     this.scene.destination = {x:0, y:0}
-    this.renderer = new THREE.WebGLRenderer({
+    this.renderer = new WebGLRenderer({
       antialias: true,
       alpha: true
       })
@@ -44,12 +55,12 @@ export default class Sketch {
   }
 
   addObjects() {
-    const texture = new THREE.TextureLoader().load(img, (texture)=>{
-      texture.minFilter = THREE.NearestFilter;
+    const texture = new TextureLoader().load(img, (texture)=>{
+      texture.minFilter = NearestFilter;
     });
      
-   this.material = new THREE.ShaderMaterial({
-      side: THREE.FrontSide,
+   this.material = new ShaderMaterial({
+      side: FrontSide,
       transparent: true,
       uniforms: {
         time: {type: 'f', value: 0},
@@ -59,8 +70,8 @@ export default class Sketch {
       vertexShader
     })
 
-  this.geometry = new THREE.TorusGeometry(4, 2, 30, 200);
-  this.mesh = new THREE.Mesh(this.geometry, this.material)
+  this.geometry = new TorusGeometry(4, 2, 30, 200);
+  this.mesh = new Mesh(this.geometry, this.material)
   this.scene.add(this.mesh)
   }
 

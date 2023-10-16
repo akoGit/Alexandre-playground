@@ -2,11 +2,18 @@ import Sketch from "./torus";
 
 const body = document.body;
 const main = document.getElementById("main");
+const time = document.getElementById("time");
+const button = document.querySelector("#btn");
+const menu = document.querySelector(".menu");
+const clickTarget = document.getElementById("click-target");
+
+let navLinks = Array.from(document.querySelectorAll(".nav-link"));
+
 
 let sx = 0,
-  sy = 0;
+    sy = 0;
 let dx = sx,
-  dy = sy;
+    dy = sy;
 
 body.style.height = main.clientHeight + "px";
 
@@ -38,12 +45,6 @@ function render() {
 function li(a, b, n) {
   return (1 - n) * a + n * b;
 }
-
-const button = document.querySelector("#btn");
-const menu = document.querySelector(".menu");
-
-let navLinks = Array.from(document.querySelectorAll(".nav-link"));
-
 button.addEventListener("click", openMenu);
 
 button.onclick = () => {
@@ -67,7 +68,6 @@ function openMenu() {
   }, 1000);
 }
 
-const clickTarget = document.getElementById("click-target");
 
 let toggle = false;
 
@@ -112,7 +112,9 @@ const findMystate = () => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
-    const geoApiUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+      const geoApiUrl = 
+          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+      
 
     fetch(geoApiUrl)
       .then((res) => res.json())
@@ -121,7 +123,6 @@ const findMystate = () => {
         statusTwo.textContent = data.city;
       });
 
-    const time = document.getElementById("time");
     time.innerHTML = formatAMPM(new Date());
 
     function formatAMPM(date) {
@@ -138,7 +139,6 @@ const findMystate = () => {
   const error = () => {
     statusTwo.textContent = `tbilisi`;
     status.textContent = `georgia`;
-    time.innerHTML = formatAMPM(new Date());
   };
 
   navigator.geolocation.getCurrentPosition(succes, error);
@@ -207,11 +207,7 @@ const createToast = (imageIndex) => {
 };
 
 const addToast = (toast) => {
-  const { matches: motionOK } = window.matchMedia(
-    "(prefers-reduced-motion: no-preference)"
-  );
-
-  Toaster.children.length && motionOK
+  Toaster.children.length 
     ? flipToast(toast)
     : Toaster.appendChild(toast);
 };
@@ -220,7 +216,7 @@ const Toast = (imageIndex) => {
   let toast = createToast(imageIndex);
   addToast(toast);
 
-  return new Promise(async (resolve, reject) => {
+  return new Promise(async (resolve, _) => {
     await Promise.allSettled(
       toast.getAnimations().map((animation) => animation.finished)
     );
