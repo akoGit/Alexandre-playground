@@ -113,7 +113,7 @@ const findMystate = () => {
     const longitude = position.coords.longitude;
 
       const geoApiUrl = 
-          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
+ `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`;
       
 
     fetch(geoApiUrl)
@@ -150,6 +150,7 @@ let num = document.querySelector("#count");
 const SketchAnimation = new Sketch({
   domElement: document.getElementById('container')
 })
+
 setTimeout(() => {
   back.style.opacity = "0";
   back.style.zIndex = "-999999999999";
